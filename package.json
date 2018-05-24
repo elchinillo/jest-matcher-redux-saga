@@ -1,0 +1,21 @@
+{
+  "name": "jest-matcher-redux-saga",
+  "version": "0.0.1",
+  "description": "Jest matcher for redux-saga",
+  "main": "dist/jest-matcher-redux-saga.min.js",
+  "module": "src/index.js",
+  "repository": "https://github.com/elchinillo/jest-matcher-redux-saga.git",
+  "author": "elchinillo@gmail.com",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack -p",
+    "compile": "webpack --mode development"
+  },
+  "peerDependencies": {
+    "jest": "^22.4.4"
+  },
+  "devDependencies": {
+    "webpack": "^4.8.3",
+    "webpack-cli": "^2.1.4"
+  }
+}
