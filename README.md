@@ -29,3 +29,42 @@ const toYield = require('jest-matcher-redux-saga').default;
 
 expect.extend({ toYield });
 ```
+# Usage
+
+saga.js
+
+```javascript
+function worker(action) {
+  ...
+}
+
+function foo(bar) {
+  ...
+}
+
+function* saga() {
+  yield delay(5000);
+  yield delay(5000);
+  const val = yield call(foo, 'bar');
+  yield put(actionCreator(val));
+
+  yield takeLatest('SET_ACTION', worker);
+}
+```
+test.js
+
+```javascript
+import { skip, step, done } from 'jest-matcher-redux-saga';
+import { delay } from 'redux-saga';
+import { call, put, takeLatest } from 'redux-saga/effects';
+
+test('toYield', () => {
+  expect(saga()).toYield([
+    skip(2),
+    call(foo, 'bar'),
+    step('someValue', put(actionCreator('someValue'))),
+    takeLatest('SET_ACTION', worker),
+    done()
+  ]);
+});
+```
